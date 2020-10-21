@@ -1,11 +1,11 @@
-import TrainingCastle from "../trainingCastle";
+import TrainingCastle from "../trainingCastle"
 
 describe('[Class test - Training Castle]', () => {
     const trainingCastle = new TrainingCastle()
 
     it('Accept new disciples', () => {
-        trainingCastle.acceptNewDisciple('testDisciple1')
-        trainingCastle.acceptNewDisciple('testDisciple2')
+        trainingCastle.acceptNewDisciple('john')
+        trainingCastle.acceptNewDisciple('jesse')
 
         expect(trainingCastle.disciples.length).toBe(2)
     })
