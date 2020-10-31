@@ -6,10 +6,7 @@ class Fiend extends Monster {
     }
 
     fight(livingThing) {
-        livingThing.health -= 5
-        if (livingThing.health <= 0) {
-            livingThing.isAlive = false
-        }
+        super.fight(livingThing, 5)
     }
 }
 

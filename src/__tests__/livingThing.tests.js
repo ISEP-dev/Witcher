@@ -1,18 +1,30 @@
-import Disciple from "../disciple";
-import Witcher from "../witcher";
-import Monster from "../monster";
+import LivingThing from "../livingThing";
+import {resistances} from "../resistances";
+import Fiend from "../fiend";
 
 describe('[Class test - Living things]', () => {
-    const hero = new Disciple('Hero1')
-    hero.eatMushrooms()
-    hero.train()
-    const witcher = new Witcher(hero)
+    const fiend = new Fiend('FiendEnnemy')
 
-    it('Fight a monster', () => {
-        const monster = new Monster('You', 2)
-        witcher.fight(monster)
+    it('LivingThings fight', () => {
+        const livingThing = new LivingThing('SimpleLivingThings', resistances.SILVER, 20)
+        livingThing.fight(fiend, 10)
 
-        expect(monster.isAlive).toBeFalsy()
+        const expectedHealthAfterFight = 10;
+        expect(fiend.health).toBe(expectedHealthAfterFight)
     })
 
+    it('LivingThings losts healths', () => {
+        const livingThing = new LivingThing('SimpleLivingThings', resistances.SILVER, 20)
+        livingThing.hitEnemy(4)
+
+        const expectedHealthAfterFight = 16
+        expect(livingThing.health).toBe(expectedHealthAfterFight)
+    })
+
+    it('LivingThings dead when it doesnt have healths', () => {
+        const livingThing = new LivingThing('SimpleLivingThings', resistances.SILVER, 5)
+        fiend.fight(livingThing)
+
+        expect(livingThing.isAlive).toBeFalsy()
+    })
 })
